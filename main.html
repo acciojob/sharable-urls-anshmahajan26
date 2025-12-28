@@ -1,8 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <script type="text/javascript" src="./script.js">
-</script>
-  </body>
+<head>
+  <title>URL Builder</title>
+</head>
 
+<body>
+
+  <h3 id="url">https://localhost:8080/</h3>
+
+  <form id="myForm">
+    <input type="text" id="name" name="name" placeholder="Enter name">
+
+    <input type="number" id="year" name="year" placeholder="Enter year">
+
+    <button type="submit" id="button">Submit</button>
+  </form>
+
+
+  <script>
+    const form = document.getElementById("myForm");
+    const urlText = document.getElementById("url");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // stop page reload
+
+      const name = document.getElementById("name").value;
+      const year = document.getElementById("year").value;
+
+      let url = "https://localhost:8080/";
+
+      // build query string
+      if (name || year) {
+        url += "?";
+
+        if (name) {
+          url += "name=" + name;
+        }
+
+        if (name && year) {
+          url += "&";
+        }
+
+        if (year) {
+          url += "year=" + year;
+        }
+      }
+
+      urlText.textContent = url;
+    });
+  </script>
+
+</body>
 </html>
